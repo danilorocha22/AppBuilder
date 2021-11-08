@@ -20,14 +20,25 @@ public class Produto {
     private double largura;
     private double profundidade;
 
-    Produto(String titulo, String descricao, double preco, LocalDate dataCadastro, LocalDate dataUltimaAtualizacao, String categoria, Vendedor vendedor) {
+    Produto(long id, String titulo, String descricao, String marca, String modelo, int estoque, double preco,
+            LocalDate dataCadastro, LocalDate dataUltimaAtualizacao, String urlFoto, String categoria, Vendedor vendedor,
+            double peso, double altura, double largura, double profundidade) {
+        this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.estoque = estoque;
         this.preco = preco;
         this.dataCadastro = dataCadastro;
         this.dataUltimaAtualizacao = dataUltimaAtualizacao;
+        this.urlFoto = urlFoto;
         this.categoria = categoria;
         this.vendedor = vendedor;
+        this.peso = peso;
+        this.altura = altura;
+        this.largura = largura;
+        this.profundidade = profundidade;
     }
 
     public void setId(long id) {
@@ -39,10 +50,7 @@ public class Produto {
     }
 
     public void setModelo(String modelo) {
-        if (getMarca() != null)
-            this.modelo = modelo;
-        else
-            throw new IllegalArgumentException("Não pode informar um modelo sem uma marca.");
+        this.modelo = modelo;
     }
 
     public void setEstoque(int estoque) {
@@ -154,4 +162,5 @@ public class Produto {
                 ", profundidade=" + profundidade +
                 '}';
     }
+
 }//classe
