@@ -26,7 +26,7 @@ public class ProdutoBuilder {
                           String categoria, Vendedor vendedor) {
         this.titulo = titulo;
         this.descricao = descricao;
-        setPreco(preco);
+        this.preco = preco;
         setDataCadastro(dataCadastro);
         setDataUltimaAtualizacao(dataUltimaAtualizacao);
         this.categoria = categoria;
@@ -44,10 +44,7 @@ public class ProdutoBuilder {
     }
 
     public ProdutoBuilder setModelo(String modelo) {
-        if (this.marca != null)
-            this.modelo = modelo;
-        else
-            throw new IllegalArgumentException("Não pode informar um modelo sem antes informar uma marca.");
+        this.modelo = modelo;
         return this;
     }
 
@@ -56,33 +53,20 @@ public class ProdutoBuilder {
         return this;
     }
 
-    public void setPreco(double preco) {
-        if (preco > 0) {
-            this.preco = preco;
-        } else {
-            throw new IllegalArgumentException("Preço não pode ser menor ou igual a zero.");
-        }
+    public ProdutoBuilder setPreco(double preco) {
+        this.preco = preco;
+        return this;
     }
 
     public ProdutoBuilder setDataCadastro(String dataCadastro) {
         LocalDate dataFormatada = LocalDate.parse(dataCadastro, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate dataAtual = LocalDate.now();
-        if (dataFormatada.compareTo(dataAtual) > -1) {
-            this.dataCadastro = dataFormatada;
-        } else {
-            throw new DateTimeException("Informe uma data igual ou superior a data atual.");
-        }
+        this.dataCadastro = dataFormatada;
         return this;
     }
 
     public ProdutoBuilder setDataUltimaAtualizacao(String dataAtualizacao) {
         LocalDate dataFormatada = LocalDate.parse(dataAtualizacao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate dataAtual = LocalDate.now();
-        if (dataFormatada.compareTo(dataAtual) > -1) {
-            this.dataUltimaAtualizacao = dataFormatada;
-        } else {
-            throw new DateTimeException("Informe uma data igual ou superior a data atual.");
-        }
+        this.dataUltimaAtualizacao = dataFormatada;
         return this;
     }
 
@@ -112,8 +96,8 @@ public class ProdutoBuilder {
     }
 
     public Produto build() {
-        return new Produto(id, titulo, descricao, marca, modelo, estoque, preco, dataCadastro, dataUltimaAtualizacao,
-                urlFoto, categoria, vendedor, peso, altura, largura, profundidade);
+        return new Produto(titulo, descricao, preco, dataCadastro, dataUltimaAtualizacao,
+                categoria, vendedor);
     }
 
 }//classe

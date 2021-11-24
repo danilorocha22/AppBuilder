@@ -11,12 +11,14 @@ public class Main {
                 4000,
                 "01/01/2022",
                 "10/01/2022",
-                "Eletrônicos",
+                "Eletrônico",
                 new Vendedor(1234, "Danilo Rocha"))
-                .setMarca("Lenovo")
-                .setModelo("A-200")
                 .build();
 
+        produto.setId(1);
+        produto.setEstoque(100);
+        produto.setMarca("Lenovo");
+        produto.setModelo("A-200");
         System.out.println(produto);
     }//main
 

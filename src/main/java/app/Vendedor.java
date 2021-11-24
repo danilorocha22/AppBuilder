@@ -27,8 +27,8 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "[matricula=" + matricula +
-                ", nome='" + nome +"]";
+        return "matrícula: "+ matricula +
+                ", nome: "+ nome;
     }
 
 }//classe
