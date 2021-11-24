@@ -19,7 +19,6 @@ public class Main {
                 .build();
 
         produto.setId(1);
-        produto.setEstoque(100);
         produto.setMarca("Lenovo");
         produto.setModelo("A-200");
         //produto.setDataUltimaAtualizacao(formatarData("10/11/2021"));
