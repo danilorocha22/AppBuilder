@@ -31,7 +31,7 @@ public class Produto {
         if(descricao == null || descricao.equals("")) throw new IllegalArgumentException("Descrição não pode ser nula ou vazia");
         this.descricao = descricao;
 
-        if (preco <= 0) throw new IllegalArgumentException("Preço não pode ser menor ou igual a zero.");
+        if (preco < 1) throw new IllegalArgumentException("Preço não pode ser menor ou igual a zero.");
         this.preco = preco;
 
         if (dataCadastro == null) throw new DateTimeException("Data de cadastro não pode ser nula.");
@@ -56,10 +56,9 @@ public class Produto {
     }
 
     public void setModelo(String modelo) {
-        if (this.marca != null)
-            this.modelo = modelo;
-        else
+        if (this.marca == null || this.marca.equals(""))
             throw new IllegalArgumentException("Não pode informar um modelo sem antes informar a marca.");
+        this.modelo = modelo;
     }
 
     public void setTitulo(String titulo) {
@@ -193,8 +192,7 @@ public class Produto {
             produto +="; marca: "+ marca;
         if (modelo != null)
             produto +="; modelo: "+ modelo;
-        if (estoque != 0)
-            produto += "; estoque: "+ estoque;
+        produto += "; estoque: "+ estoque;
         produto += "; preço: "+ preco;
         produto += "; data de cadastrado: "+ dataCadastro;
         produto += "; data da última atualização: "+ dataUltimaAtualizacao;
