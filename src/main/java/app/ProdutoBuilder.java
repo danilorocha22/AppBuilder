@@ -22,13 +22,13 @@ public class ProdutoBuilder {
     private double largura;
     private double profundidade;
 
-    public ProdutoBuilder(String titulo, String descricao, double preco, String dataCadastro, String dataUltimaAtualizacao,
+    public ProdutoBuilder(String titulo, String descricao, double preco, LocalDate dataCadastro, LocalDate dataUltimaAtualizacao,
                           String categoria, Vendedor vendedor) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.preco = preco;
-        setDataCadastro(dataCadastro);
-        setDataUltimaAtualizacao(dataUltimaAtualizacao);
+        this.dataCadastro = dataCadastro;
+        this.dataUltimaAtualizacao = dataUltimaAtualizacao;
         this.categoria = categoria;
         this.vendedor = vendedor;
     }
@@ -58,15 +58,13 @@ public class ProdutoBuilder {
         return this;
     }
 
-    public ProdutoBuilder setDataCadastro(String dataCadastro) {
-        LocalDate dataFormatada = LocalDate.parse(dataCadastro, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        this.dataCadastro = dataFormatada;
+    public ProdutoBuilder setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
         return this;
     }
 
-    public ProdutoBuilder setDataUltimaAtualizacao(String dataAtualizacao) {
-        LocalDate dataFormatada = LocalDate.parse(dataAtualizacao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        this.dataUltimaAtualizacao = dataFormatada;
+    public ProdutoBuilder setDataUltimaAtualizacao(LocalDate dataAtualizacao) {
+        this.dataUltimaAtualizacao = dataAtualizacao;
         return this;
     }
 

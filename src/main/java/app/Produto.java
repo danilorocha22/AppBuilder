@@ -25,14 +25,27 @@ public class Produto {
     Produto(String titulo, String descricao, double preco, LocalDate dataCadastro, LocalDate dataUltimaAtualizacao,
             String categoria, Vendedor vendedor) {
 
+        if (titulo == null || titulo.equals("")) throw new IllegalArgumentException("Titulo não pode ser nulo ou vazio");
         this.titulo = titulo;
+
+        if(descricao == null || descricao.equals("")) throw new IllegalArgumentException("Descrição não pode ser nula ou vazia");
         this.descricao = descricao;
+
+        if (preco <= 0) throw new IllegalArgumentException("Preço não pode ser menor ou igual a zero.");
         this.preco = preco;
-        this.dataCadastro = dataCadastro;
-        this.dataUltimaAtualizacao = dataUltimaAtualizacao;
+
+        if (dataCadastro == null) throw new DateTimeException("Data de cadastro não pode ser nula.");
+        setDataCadastro(dataCadastro);
+
+        if(dataUltimaAtualizacao == null) throw new NullPointerException("Data da última atualiação não pode ser nula");
+        setDataUltimaAtualizacao(dataUltimaAtualizacao);
+
+        if(categoria == null || categoria.equals("")) throw new IllegalArgumentException("Categoria não pode ser nula ou vazia");
         this.categoria = categoria;
+
+        if(vendedor == null || vendedor.equals("")) throw new IllegalArgumentException("Vendedor não pode ser nulo ou vazio");
         this.vendedor = vendedor;
-    }
+    }//construtor objeto default
 
     public void setId(long id) {
         this.id = id;
@@ -47,6 +60,38 @@ public class Produto {
             this.modelo = modelo;
         else
             throw new IllegalArgumentException("Não pode informar um modelo sem antes informar a marca.");
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        if(dataCadastro.isBefore(LocalDate.now()))
+            throw new IllegalArgumentException("Data de cadastro não pode ser anterior a data atual");
+        this.dataCadastro = dataCadastro;
+    }
+
+    public void setDataUltimaAtualizacao(LocalDate dataUltimaAtualizacao) {
+        if(dataUltimaAtualizacao.isBefore(LocalDate.now()))
+            throw new IllegalArgumentException("Data de atualização não pode ser anterior a data atual");
+        this.dataUltimaAtualizacao = dataUltimaAtualizacao;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
     }
 
     public void setEstoque(int estoque) {
@@ -71,28 +116,6 @@ public class Produto {
 
     public void setProfundidade(double profundidade) {
         this.profundidade = profundidade;
-    }
-
-    public void setPreco(double preco) {
-        if (preco < 0)
-            throw new IllegalArgumentException("Preço não pode ser menor ou igual a zero.");
-        this.preco = preco;
-    }
-
-    public void setDataCadastro(String dataCadastro) {
-        LocalDate dataFormatada = LocalDate.parse(dataCadastro, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate dataAtual = LocalDate.now();
-        if (dataFormatada.compareTo(dataAtual) < -1)
-            throw new DateTimeException("Informe uma data igual ou superior a data atual.");
-        this.dataCadastro = dataFormatada;
-    }
-
-    public void setDataUltimaAtualizacao(String dataUltimaAtualizacao) {
-        LocalDate dataFormatada = LocalDate.parse(dataUltimaAtualizacao, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate dataAtual = LocalDate.now();
-        if (dataFormatada.compareTo(dataAtual) < -1)
-            throw new DateTimeException("Informe uma data igual ou superior a data atual.");
-        this.dataUltimaAtualizacao = dataFormatada;
     }
 
     public long getId() {
