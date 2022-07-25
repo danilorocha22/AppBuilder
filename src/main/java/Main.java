@@ -8,15 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class Main {
 
     public static void main(String[] args) {
-        Produto produto = new ProdutoBuilder(
-                "Notebook",
-                "8gb, core i9",
-                4000,
-                LocalDate.now(),
-                LocalDate.now(),
-                "Eletrônico",
-                new Vendedor(1234, "Danilo Rocha"))
-                .build();
+        Produto produto = new ProdutoBuilder().build();
 
         produto.setId(1);
         produto.setMarca("Lenovo");

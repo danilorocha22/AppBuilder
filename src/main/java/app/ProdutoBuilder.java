@@ -22,17 +22,6 @@ public class ProdutoBuilder {
     private double largura;
     private double profundidade;
 
-    public ProdutoBuilder(String titulo, String descricao, double preco, LocalDate dataCadastro, LocalDate dataUltimaAtualizacao,
-                          String categoria, Vendedor vendedor) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.dataCadastro = dataCadastro;
-        this.dataUltimaAtualizacao = dataUltimaAtualizacao;
-        this.categoria = categoria;
-        this.vendedor = vendedor;
-    }
-
     public ProdutoBuilder setId(long id) {
         this.id = id;
         return this;
